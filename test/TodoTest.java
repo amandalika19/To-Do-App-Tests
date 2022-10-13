@@ -64,8 +64,21 @@ public class TodoTest
     }
 
     @Test
+    void TestSetStatus(){
+        setup.setStatus(Status.Started);
+        Assertions.assertEquals(Status.Started, setup.getStatus());
+
+    }
+
+    @Test
     void TestGetImportance()
     {
+        Assertions.assertEquals(Importance.High, setup.getImportance());
+    }
+
+    @Test
+    void TestSetImportance(){
+        setup.setImportance(Importance.High);
         Assertions.assertEquals(Importance.High, setup.getImportance());
     }
 }
