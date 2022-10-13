@@ -2,7 +2,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.util.TimeZone;
 
 public class TodoTest
 {
@@ -33,8 +35,25 @@ public class TodoTest
     }
 
     @Test
+    void TestSetDue()
+    {
+        long timestamp = System.currentTimeMillis() ;
+        LocalDateTime time = LocalDateTime.ofInstant(Instant.ofEpochMilli(timestamp),
+                        TimeZone.getDefault().toZoneId());
+        setup.setDue(time);
+        Assertions.assertEquals(time, setup.getDue());
+    }
+
+
+    @Test
     void TestGetCat()
     {
+        Assertions.assertEquals(Category.Blue, setup.getCat());
+    }
+
+    @Test
+    void TestSetCat(){
+        setup.setCat(Category.Blue);
         Assertions.assertEquals(Category.Blue, setup.getCat());
     }
 
