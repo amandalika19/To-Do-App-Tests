@@ -12,6 +12,15 @@ Download a zip file of the project from the code menu above. The downloaded fold
 ## How to use the project
 You can run this project through an IDE that supports Java. Once uploaded, the program can be used by running the file CLIMenu.java. This is the **only** file that needs to be run for this project to work correctly.
 
+## To run all tests: 
+from the main menu, select Run | Run ‘All in test’ with coverage. This would run all the unit tests in the module with coverage. 
+
+Note - If you don’t see the test coverage in IntelliJ, then please follow these settings to see the coverage. 
+
+-Open Edit Configurations menu 
+
+-Click on Modify Options > Collect coverage in test folders 
+
 ## File breakdown
 Multiple files consist of GUIs:
 + AddGUI.java
