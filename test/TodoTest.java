@@ -52,9 +52,10 @@ public class TodoTest
     }
 
     @Test
-    void TestSetCat(){
-        setup.setCat(Category.Blue);
-        Assertions.assertEquals(Category.Blue, setup.getCat());
+    void TestSetCat()
+    {
+        setup.setCat(Category.Red);
+        Assertions.assertEquals(Category.Red, setup.getCat());
     }
 
     @Test
@@ -65,8 +66,8 @@ public class TodoTest
 
     @Test
     void TestSetStatus(){
-        setup.setStatus(Status.Started);
-        Assertions.assertEquals(Status.Started, setup.getStatus());
+        setup.setStatus(Status.Completed);
+        Assertions.assertEquals(Status.Completed, setup.getStatus());
 
     }
 
@@ -78,7 +79,7 @@ public class TodoTest
 
     @Test
     void TestSetImportance(){
-        setup.setImportance(Importance.High);
-        Assertions.assertEquals(Importance.High, setup.getImportance());
+        setup.setImportance(Importance.Low);
+        Assertions.assertEquals(Importance.Low, setup.getImportance());
     }
 }
