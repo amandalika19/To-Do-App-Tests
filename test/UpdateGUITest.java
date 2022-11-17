@@ -1,5 +1,8 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.EnumSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.time.LocalDateTime;
 
@@ -27,6 +30,84 @@ public class UpdateGUITest {
         Assertions.assertTrue(toTest.purple.isShowing());
         Assertions.assertTrue(toTest.yellow.isShowing());
         Assertions.assertTrue(toTest.orange.isShowing());
+    }
+
+    @ParameterizedTest
+    @EnumSource(Category.class)
+    public void TestCategorySelectedCorrectly(Category category) {
+        todo.setCat(category);
+        UpdateGUI gui = new UpdateGUI(todo);
+        switch(category) {
+            case Red -> {
+                Assertions.assertTrue(gui.red.isSelected());
+                break;
+            }
+            case Orange -> {
+                Assertions.assertTrue(gui.orange.isSelected());
+                break;
+            }
+            case Blue -> {
+                Assertions.assertTrue(gui.blue.isSelected());
+                break;
+            }
+            case Purple -> {
+                Assertions.assertTrue(gui.purple.isSelected());
+                break;
+            }
+            case Yellow -> {
+                Assertions.assertTrue(gui.yellow.isSelected());
+                break;
+            }
+            case Green -> {
+                Assertions.assertTrue(gui.green.isSelected());
+                break;
+            }
+        }
+    }
+
+    @ParameterizedTest
+    @EnumSource(Importance.class)
+    public void TestImportanceSelectedCorrectly(Importance importance) {
+        todo.setImportance(importance);
+        UpdateGUI gui = new UpdateGUI(todo);
+        switch(importance) {
+            case Low -> {
+                Assertions.assertTrue(gui.low.isSelected());
+                break;
+            }
+            case High -> {
+                Assertions.assertTrue(gui.high.isSelected());
+                break;
+            }
+            case Normal -> {
+                Assertions.assertTrue(gui.normal.isSelected());
+            }
+        }
+    }
+
+    @ParameterizedTest
+    @EnumSource(Status.class)
+    public void TestStatusSelectedCorrectly(Status status) {
+        todo.setStatus(status);
+        UpdateGUI gui = new UpdateGUI(todo);
+        switch(status) {
+            case Pending -> {
+                Assertions.assertTrue(gui.pending.isSelected());
+                break;
+            }
+            case Started -> {
+                Assertions.assertTrue(gui.started.isSelected());
+                break;
+            }
+            case Partial -> {
+                Assertions.assertTrue(gui.partial.isSelected());
+                break;
+            }
+            case Completed -> {
+                Assertions.assertTrue(gui.completed.isSelected());
+                break;
+            }
+        }
     }
 
     @Test
@@ -119,8 +200,6 @@ public class UpdateGUITest {
             toTest.saveButton.doClick();
         });
     }
-
-
 
     @Test
     public void TestCancelDismissesTheWindow() {
