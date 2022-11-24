@@ -36,11 +36,11 @@ jobs:
           secure: true
           username: shanmupriyar57@gmail.com
           password: igumtaxgxckgfydy
-          subject: ${{ github.job }} job of ${{ github.repository }} has ${{ job.status }}
+          subject: ${{ github.job }} job of ${{ github.repository }} Result
           to: shanmupriya96@outlook.com
           cc: shanmupriya96@outlook.com
           from: Shanmugapriya Ravi
-          body: ${{ github.job }} job in worflow ${{ github.workflow }} of ${{ github.repository }} has ${{ job.status }}
-          html_body: target/surefire-reports/TEST-AddGUITest.xml
+          body: ${{ github.job.build }} job in worflow ${{ github.workflow }} of ${{ github.repository }} has ${{ job.status }}
+          
           
   
