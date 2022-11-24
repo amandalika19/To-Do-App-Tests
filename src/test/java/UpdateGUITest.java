@@ -9,12 +9,14 @@ import java.time.LocalDateTime;
 public class UpdateGUITest {
     UpdateGUI toTest;
     Todo todo;
+    Todo blankToDo;
     LocalDateTime now;
 
     public UpdateGUITest() {
         CLIMenu menu = new CLIMenu();
         now = LocalDateTime.now();
         todo = new Todo("testTodo", now, Category.Blue, Importance.Low, Status.Partial);
+        blankToDo = new Todo("testTodo", now, null, null, null);
         toTest = new UpdateGUI(todo);
     }
 
@@ -38,29 +40,28 @@ public class UpdateGUITest {
         todo.setCat(category);
         UpdateGUI gui = new UpdateGUI(todo);
         switch(category) {
-            case Red -> {
+            case Red : {
                 Assertions.assertTrue(gui.red.isSelected());
                 break;
             }
-            case Orange -> {
+            case Orange : {
                 Assertions.assertTrue(gui.orange.isSelected());
                 break;
             }
-            case Blue -> {
+            case Blue : {
                 Assertions.assertTrue(gui.blue.isSelected());
                 break;
             }
-            case Purple -> {
+            case Purple : {
                 Assertions.assertTrue(gui.purple.isSelected());
                 break;
             }
-            case Yellow -> {
+            case Yellow : {
                 Assertions.assertTrue(gui.yellow.isSelected());
                 break;
             }
-            case Green -> {
+            case Green : {
                 Assertions.assertTrue(gui.green.isSelected());
-                break;
             }
         }
     }
@@ -71,16 +72,17 @@ public class UpdateGUITest {
         todo.setImportance(importance);
         UpdateGUI gui = new UpdateGUI(todo);
         switch(importance) {
-            case Low -> {
+            case Low : {
                 Assertions.assertTrue(gui.low.isSelected());
                 break;
             }
-            case High -> {
+            case High : {
                 Assertions.assertTrue(gui.high.isSelected());
                 break;
             }
-            case Normal -> {
+            case Normal : {
                 Assertions.assertTrue(gui.normal.isSelected());
+                break;
             }
         }
     }
@@ -91,21 +93,20 @@ public class UpdateGUITest {
         todo.setStatus(status);
         UpdateGUI gui = new UpdateGUI(todo);
         switch(status) {
-            case Pending -> {
+            case Pending : {
                 Assertions.assertTrue(gui.pending.isSelected());
                 break;
             }
-            case Started -> {
+            case Started : {
                 Assertions.assertTrue(gui.started.isSelected());
                 break;
             }
-            case Partial -> {
+            case Partial : {
                 Assertions.assertTrue(gui.partial.isSelected());
                 break;
             }
-            case Completed -> {
+            case Completed : {
                 Assertions.assertTrue(gui.completed.isSelected());
-                break;
             }
         }
     }
@@ -192,6 +193,19 @@ public class UpdateGUITest {
     }
 
     @Test
+    public void TestUpdateChangesWithEmptyImportance() {
+        toTest.enterName.setText("This is the changed Text");
+        toTest.purple.setSelected(true);
+        toTest.partial.setSelected(true);
+        toTest.high.setSelected(false);
+        toTest.low.setSelected(false);
+        toTest.normal.setSelected(false);
+        Assertions.assertDoesNotThrow(()-> {
+            toTest.saveButton.doClick();
+        });
+        Assertions.assertNotEquals(toTest.text.getText(), "Importance must be selected.");
+    }
+    @Test
     public void TestUpdateChangesAfterUpdateToDoToDo1() {
         toTest.enterName.setText("This is the changed Text");
         toTest.yellow.setSelected(true);
@@ -201,6 +215,25 @@ public class UpdateGUITest {
         });
     }
 
+    @Test
+    public void TestUpdateChangesAfterUpdateToDoToDo2() {
+        toTest.enterName.setText("This is the changed Text");
+        toTest.red.setSelected(true);
+        toTest.started.setSelected(true);
+        Assertions.assertDoesNotThrow(()-> {
+            toTest.saveButton.doClick();
+        });
+    }
+
+    @Test
+    public void TestUpdateChangesAfterUpdateToDoToDo3() {
+        toTest.enterName.setText("This is the changed Text");
+        toTest.blue.setSelected(true);
+        toTest.started.setSelected(true);
+        Assertions.assertDoesNotThrow(()-> {
+            toTest.saveButton.doClick();
+        });
+    }
     @Test
     public void TestCancelDismissesTheWindow() {
         Assertions.assertDoesNotThrow(()-> {
