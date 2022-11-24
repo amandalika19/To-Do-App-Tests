@@ -1,7 +1,12 @@
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
+
+
+import java.awt.event.ActionEvent;
+
+import static org.mockito.Mockito.when;
+import static org.powermock.api.mockito.PowerMockito.spy;
+import static org.powermock.api.mockito.PowerMockito.verifyStatic;
 
 public class ImportGUITest {
     ImportGUI toTest;
@@ -22,15 +27,18 @@ public class ImportGUITest {
     public void TestShowsErrorMessageOnEmptyFileName() {
         toTest.enterFilename.setText("");
         toTest.openFilename.doClick();
-        Assertions.assertFalse(toTest.text.isShowing());
+        ActionEvent e = new ActionEvent(this, 100, "Open File");
+        toTest.actionPerformed(e);
+        Assertions.assertTrue(toTest.text.isShowing());
+        Assertions.assertEquals(toTest.text.getText(), "File can't be found. Please make sure the file is in this programs folder.");
     }
 
     @Test
     public void TestOpensTodoOnDefault() {
         toTest.enterFilename.setText("");
         toTest.openDefault.doClick();
+
         Assertions.assertFalse(toTest.text.isShowing());
     }
-
 
 }
