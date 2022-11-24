@@ -59,6 +59,11 @@
             <version>1.6.4</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.github.caciocavallosilano</groupId>
+            <artifactId>cacio-tta</artifactId>
+            <scope>test</scope>
+         </dependency>
     </dependencies>
     <build>
         <plugins>
