@@ -1,8 +1,5 @@
 name: Java
-'on':
-  push:
-    branches:
-      - github-actions
+on: push
 
 jobs:
   build:
