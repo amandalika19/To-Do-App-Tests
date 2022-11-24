@@ -42,7 +42,6 @@ jobs:
           from: Shanmugapriya Ravi
           body: 
             ${{ github.job.build }} The Build in worflow ${{ github.workflow }} of ${{ github.repository }} has ${{ job.build.status }} 
-            ${{ github.job.Maven Tests }} The Tests in worflow ${{ github.workflow }} of ${{ github.repository }} has ${{ job.Maven Tests.status }}
-          
+                      
           
   
