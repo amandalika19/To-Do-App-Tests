@@ -35,11 +35,10 @@ jobs:
           server_port: 587
           secure: true
           username: shanmupriyar57@gmail.com
-          password: ${{secrets.MAIL_PASSWORD}}
+          password: igumtaxgxckgfydy
           subject: Github Actions job result
           to: shanmupriya96@outlook.com
           from: Shanmugapriya Ravi
           body: Build job of To-Do-App-Tests completed successfully!
-          html_body: file://README.html
           cc: shanmupriya96@outlook.com
   
