@@ -1,4 +1,4 @@
-name: Java
+name: To_Do_App_Workflow
 on: push
 
 jobs:
@@ -40,7 +40,9 @@ jobs:
           to: shanmupriya96@outlook.com
           cc: shanmupriya96@outlook.com
           from: Shanmugapriya Ravi
-          body: ${{ github.job.build }} job in worflow ${{ github.workflow }} of ${{ github.repository }} has ${{ job.status }}
+          body: 
+            ${{ github.job.build }} The Build in worflow ${{ github.workflow }} of ${{ github.repository }} has ${{ job.build.status }} 
+            ${{ github.job.Maven Tests }} The Tests in worflow ${{ github.workflow }} of ${{ github.repository }} has ${{ job.Maven Tests.status }}
           
           
   
