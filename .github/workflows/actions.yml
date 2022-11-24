@@ -38,6 +38,7 @@ jobs:
           subject: Github Actions job result
           to: shanmupriya96@outlook.com
           from: Shanmugapriya Ravi
-          body: "Build job of To-Do-App-Tests completed successfully! Follow the link https://github.com/amandalika19/To-Do-App-Tests/actions/runs/${{github.run_number}} for more details"
+          body: "Build job of To-Do-App-Tests completed successfully!"
+          html_body: target/surefire-reports/TEST-AddGUITest.xml"
           cc: shanmupriya96@outlook.com
   
