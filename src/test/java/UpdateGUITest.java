@@ -31,7 +31,7 @@ public class UpdateGUITest {
         Assertions.assertTrue(toTest.green.isShowing());
         Assertions.assertTrue(toTest.purple.isShowing());
         Assertions.assertTrue(toTest.yellow.isShowing());
-        Assertions.assertFalse(toTest.orange.isShowing());
+        Assertions.assertTrue(toTest.orange.isShowing());
     }
 
     @ParameterizedTest
