@@ -26,9 +26,9 @@ jobs:
           path: target/surefire-reports/*.xml
           reporter: java-junit
           fail-on-error: true
-          
-      - name: Send mail
-        if: always()
+
+      - name: Send failure mail
+        if: failure()
         uses: dawidd6/action-send-mail@v3
         with:
           server_address: smtp.gmail.com
@@ -36,12 +36,26 @@ jobs:
           secure: true
           username: shanmupriyar57@gmail.com
           password: igumtaxgxckgfydy
-          subject: ${{ github.job }} job of ${{ github.repository }} Result
+          subject: ${{ github.job }} job of ${{ github.repository }} Result - Failed
           to: shanmupriya96@outlook.com
           cc: shanmupriya96@outlook.com
           from: Shanmugapriya Ravi
           body: 
             ${{ github.job.build }} The Build in worflow ${{ github.workflow }} of ${{ github.repository }} has ${{ job.build.status }} 
-                      
-          
-  
+
+      - name: Send success mail
+        if: success()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: shanmupriyar57@gmail.com
+          password: igumtaxgxckgfydy
+          subject: ${{ github.job }} job of ${{ github.repository }} Result - Passed
+          to: shanmupriya96@outlook.com
+          cc: shanmupriya96@outlook.com
+          from: Shanmugapriya Ravi
+          body: 
+            ${{ github.job.build }} The Build in worflow ${{ github.workflow }} of ${{ github.repository }} has ${{ job.build.status }} 
+                    
