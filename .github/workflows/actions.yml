@@ -13,8 +13,10 @@ jobs:
           java-version: '18'
           distribution: corretto
       - name: Build
+        id: build
         run: mvn --batch-mode -DskipTests package
       - name: Run headless test
+        id: test
         uses: GabrielBB/xvfb-action@v1
         with:
           run: mvn -B test --file pom.xml
@@ -41,7 +43,7 @@ jobs:
           cc: shanmupriya96@outlook.com
           from: Shanmugapriya Ravi
           body: 
-            ${{ github.job.build }} The Build in worflow ${{ github.workflow }} of ${{ github.repository }} has ${{ job.build.status }} 
+            ${{ github.job.build }} The Build in worflow ${{ github.workflow }} of ${{ github.repository }} Result - Build - ${{ steps.build.conclusion }} - Test - ${{ steps.test.conclusion }}
 
       - name: Send success mail
         if: success()
