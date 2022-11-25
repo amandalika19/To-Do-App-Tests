@@ -38,26 +38,11 @@ jobs:
           secure: true
           username: shanmupriyar57@gmail.com
           password: igumtaxgxckgfydy
-          subject: ${{ github.job }} job of ${{ github.repository }} Result - Failed
+          subject: ${{ github.job }} job of ${{ github.repository }} Result
           to: shanmupriya96@outlook.com
           cc: shanmupriya96@outlook.com
           from: Shanmugapriya Ravi
           body: 
-            ${{ github.job.build }} The Build in worflow ${{ github.workflow }} of ${{ github.repository }} Result - Build - ${{ steps.build.conclusion }} - Test - ${{ steps.test.conclusion }}
-
-      - name: Send success mail
-        if: success()
-        uses: dawidd6/action-send-mail@v3
-        with:
-          server_address: smtp.gmail.com
-          server_port: 465
-          secure: true
-          username: shanmupriyar57@gmail.com
-          password: igumtaxgxckgfydy
-          subject: ${{ github.job }} job of ${{ github.repository }} Result - Passed
-          to: shanmupriya96@outlook.com
-          cc: shanmupriya96@outlook.com
-          from: Shanmugapriya Ravi
-          body: 
-            ${{ github.job.build }} The Build in worflow ${{ github.workflow }} of ${{ github.repository }} has ${{ job.build.status }} 
-                    
+            ${{ github.job.build }} The Build in worflow ${{ github.workflow }} of ${{ github.repository }} Results 
+            Build - ${{ steps.build.conclusion }} 
+            Test - ${{ steps.test.conclusion }}
