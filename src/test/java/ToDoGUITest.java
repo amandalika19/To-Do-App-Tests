@@ -8,7 +8,9 @@ import java.awt.event.ActionEvent;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
 public class ToDoGUITest
@@ -95,4 +97,16 @@ public class ToDoGUITest
         toTest.actionPerformed(event);
         assertEquals(false, toTest.isVisible());
     }
+
+    @Test
+    public void valueChanged_NullPointerExceptionWhenSourceObjectIsWrong()
+    {
+        LocalDateTime time = LocalDateTime.of(2022,10,11,22,00);
+        Todo test = new Todo("Test", time, Category.Blue, Importance.High, Status.Started);
+        ListSelectionEvent e = new ListSelectionEvent(test, 0, 0, true);
+        Exception exception = assertThrows(NullPointerException.class, ()-> {toTest.valueChanged(e);});
+        assertTrue(exception.getMessage().contains("Cannot invoke"));
+    }
+
+
 }
