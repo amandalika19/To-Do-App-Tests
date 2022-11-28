@@ -34,7 +34,7 @@ jobs:
           fail-on-error: true
       
       - name: Read output variables
-        run: echo "url is ${{ steps.test-report.outputs.runHtmlUrl }}"
+        run: echo "url is ${{ steps.testreports.outputs.runHtmlUrl }}"
       
       - name: Send Email
         uses: dawidd6/action-send-mail@v3
@@ -54,7 +54,7 @@ jobs:
     
             Build - ${{ steps.build.conclusion }} 
             
-            Test - ${{ steps.test.conclusion }} - url is ${{ steps.test-report.outputs.runHtmlUrl }}
+            Test - ${{ steps.test.conclusion }} - url is ${{ steps.testreports.outputs.runHtmlUrl }}
             ${{ steps.testreports.outputs }}
           attachments: '[{"path":"target/surefire-reports/*.xml"}]'
             
