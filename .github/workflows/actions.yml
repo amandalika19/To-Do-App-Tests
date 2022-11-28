@@ -50,9 +50,9 @@ jobs:
             
             Test - ${{ steps.test.conclusion }}
             
-            Results - ${{ steps.testreports.passed }}
-            ${{ steps.testreports.passed }}
-            ${{ steps.testreports.passed }}
-            ${{ steps.testreports.passed }}
+            Results - ${{ steps.test.passed }}
+            ${{ steps.test.failed }}
+            ${{ steps.test.skipped }}
+            ${{ steps.test.time }}
 
 
