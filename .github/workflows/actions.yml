@@ -52,6 +52,7 @@ jobs:
             Build - ${{ steps.build.conclusion }} 
             
             Test - ${{ steps.test.conclusion }}
+            ${{ steps.test.output }}
           attachments: '[{"path":"target/surefire-reports/*.xml"}]'
             
             
