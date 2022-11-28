@@ -25,7 +25,7 @@ jobs:
           
       - name: Report
         id: testreports
-        uses: dorny/test-reporter@v1
+        uses: phoenix-actions/test-reporting@v10
         if: always()
         with:
           name: Maven Tests
