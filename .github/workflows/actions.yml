@@ -32,7 +32,6 @@ jobs:
           path: target/surefire-reports/*.xml
           reporter: java-junit
           fail-on-error: true
-          run: echo "test=hello" >> $GITHUB_OUTPUT 
       
       - name: Read output variables
         run: echo "url is ${{ steps.test-report.outputs.runHtmlUrl }}"
