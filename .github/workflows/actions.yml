@@ -12,15 +12,23 @@ jobs:
         with:
           java-version: '18'
           distribution: corretto
+          
       - name: Build
         id: build
         run: mvn --batch-mode -DskipTests package
+        
       - name: Run headless test
-      
         id: test
         uses: GabrielBB/xvfb-action@v1
         with:
           run: mvn -B test --file pom.xml
+          
+          
+      - name: Upload output file
+        uses: actions/upload-artifact@v3
+        with:
+          name: output-log-file
+          path: output.log
           
       - name: Report
         id: testreports
@@ -31,8 +39,8 @@ jobs:
           path: target/surefire-reports/*.xml
           reporter: java-junit
           fail-on-error: true
-          run: echo ${{steps.testreports.outputs}}
-
+          run: echo "test=hello" >> $GITHUB_OUTPUT 
+      
       - name: Send Email
         uses: dawidd6/action-send-mail@v3
         if: always()
@@ -52,7 +60,7 @@ jobs:
             Build - ${{ steps.build.conclusion }} 
             
             Test - ${{ steps.test.conclusion }}
-            ${{ steps.test.output }}
+            ${{ steps.testreports.outputs }}
           attachments: '[{"path":"target/surefire-reports/*.xml"}]'
             
             
