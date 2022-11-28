@@ -45,6 +45,14 @@ jobs:
           from: Shanmugapriya Ravi
           body: 
             ${{ github.job.build }} The Build in worflow ${{ github.workflow }} of ${{ github.repository }} Results 
+    
             Build - ${{ steps.build.conclusion }} 
+            
             Test - ${{ steps.test.conclusion }}
-            Results - ${{ steps.testreports.outputs.result }}
+            
+            Results - ${{ steps.testreports.passed }}
+            ${{ steps.testreports.passed }}
+            ${{ steps.testreports.passed }}
+            ${{ steps.testreports.passed }}
+
+
