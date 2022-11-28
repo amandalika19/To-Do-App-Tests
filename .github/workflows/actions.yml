@@ -54,7 +54,7 @@ jobs:
     
             Build - ${{ steps.build.conclusion }} 
             
-            Test - ${{ steps.test.conclusion }}
+            Test - ${{ steps.test.conclusion }} - url is ${{ steps.test-report.outputs.runHtmlUrl }}
             ${{ steps.testreports.outputs }}
           attachments: '[{"path":"target/surefire-reports/*.xml"}]'
             
