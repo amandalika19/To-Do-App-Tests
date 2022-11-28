@@ -21,6 +21,7 @@ jobs:
         with:
           run: mvn -B test --file pom.xml
       - name: Report
+        id: testreports
         uses: dorny/test-reporter@v1
         if: always()
         with:
@@ -46,4 +47,4 @@ jobs:
             ${{ github.job.build }} The Build in worflow ${{ github.workflow }} of ${{ github.repository }} Results 
             Build - ${{ steps.build.conclusion }} 
             Test - ${{ steps.test.conclusion }}
-             ${{ steps.response.outputs.result }}
+            Results - ${{ steps.testreports.outputs.result }}
