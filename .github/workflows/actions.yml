@@ -62,7 +62,7 @@ jobs:
             
             Skipped - ${{ steps.testreports.outputs.skipped }}
             
-            Time - ${{ steps.testreports.outputs.time }}
+            Time - ${{ steps.testreports.outputs.time }}ms
             
             Click on the following link for a more detailed Test Report - ${{ steps.testreports.outputs.runHtmlUrl }}
         
