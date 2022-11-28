@@ -16,10 +16,12 @@ jobs:
         id: build
         run: mvn --batch-mode -DskipTests package
       - name: Run headless test
+      
         id: test
         uses: GabrielBB/xvfb-action@v1
         with:
           run: mvn -B test --file pom.xml
+          
       - name: Report
         id: testreports
         uses: dorny/test-reporter@v1
@@ -29,6 +31,7 @@ jobs:
           path: target/surefire-reports/*.xml
           reporter: java-junit
           fail-on-error: true
+          run: echo ${{steps.testreports.outputs}}
 
       - name: Send Email
         uses: dawidd6/action-send-mail@v3
@@ -50,11 +53,6 @@ jobs:
             
             Test - ${{ steps.test.conclusion }}
             
-            Report - ${{ steps.testreports.conclusion }}
             
-            echo" Results - ${{ steps.testreports.passed }}
-            ${{ steps.testreports.failed }}
-            ${{ steps.testreports.skipped }}
-            ${{ steps.testreports.time }}"
 
 
