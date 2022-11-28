@@ -23,13 +23,6 @@ jobs:
         with:
           run: mvn -B test --file pom.xml
           
-          
-      - name: Upload output file
-        uses: actions/upload-artifact@v3
-        with:
-          name: output-log-file
-          path: output.log
-          
       - name: Report
         id: testreports
         uses: dorny/test-reporter@v1
@@ -40,6 +33,9 @@ jobs:
           reporter: java-junit
           fail-on-error: true
           run: echo "test=hello" >> $GITHUB_OUTPUT 
+      
+      - name: Read output variables
+        run: echo "url is ${{ steps.test-report.outputs.runHtmlUrl }}"
       
       - name: Send Email
         uses: dawidd6/action-send-mail@v3
