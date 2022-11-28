@@ -55,11 +55,16 @@ jobs:
             Build - ${{ steps.build.conclusion }} 
             
             Test - ${{ steps.test.conclusion }} 
+            
             Passed - ${{ steps.testreports.outputs.passed }}
+            
             Failed - ${{ steps.testreports.outputs.failed }}
+            
             Skipped - ${{ steps.testreports.outputs.skipped }}
+            
             Time - ${{ steps.testreports.outputs.time }}
-            Click on the following link for a more detailed tesr report - ${{ steps.testreports.outputs.runHtmlUrl }}
+            
+            Click on the following link for a more detailed Test Report - ${{ steps.testreports.outputs.runHtmlUrl }}
         
             
 
