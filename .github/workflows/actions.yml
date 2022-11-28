@@ -52,9 +52,9 @@ jobs:
             
             Report - ${{ steps.testreports.conclusion }}
             
-            Results - ${{ steps.testreports.passed }}
+            echo" Results - ${{ steps.testreports.passed }}
             ${{ steps.testreports.failed }}
             ${{ steps.testreports.skipped }}
-            ${{ steps.testreports.time }}
+            ${{ steps.testreports.time }}"
 
 
