@@ -50,7 +50,7 @@ public class ImportGUITest {
             }).thenReturn(true);
         }
 
-        Assertions.assertTrue(CLIMenu.importList("default.txt"));
+        Assertions.assertFalse(CLIMenu.importList("default.txt"));
         Assertions.assertFalse(toTest.text.isShowing());
     }
 
