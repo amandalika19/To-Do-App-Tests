@@ -1,9 +1,9 @@
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
-import org.mockito.MockedStatic;
-import org.mockito.Mockito;
+
 
 import java.awt.event.ActionEvent;
+
 
 public class ImportGUITest {
     ImportGUI toTest;
@@ -21,7 +21,7 @@ public class ImportGUITest {
     }
 
     @Test
-    public void TestShowsErrorMessageOnEmptyFileName() {
+    public void TestDisplaysErrorMessageOnEmptyFileName() {
         toTest.enterFilename.setText("");
         toTest.openFilename.doClick();
         ActionEvent e = new ActionEvent(this, 100, "Open File");
@@ -30,27 +30,23 @@ public class ImportGUITest {
         Assertions.assertEquals(toTest.text.getText(), "File can't be found. Please make sure the file is in this programs folder.");
     }
 
-//    @Test
-//    public void TestOpensTodoOnDefault() {
-//        toTest.enterFilename.setText("");
-//        toTest.openDefault.doClick();
-//
-//        Assertions.assertFalse(toTest.text.isShowing());
-//    }
+    @Test
+    public void TestDisplaysErrorMessageOnDifferentActionCommand() {
+        toTest.enterFilename.setText("");
+        toTest.openFilename.doClick();
+        ActionEvent e = new ActionEvent(this, 100, "Not Open File");
+        toTest.actionPerformed(e);
+        Assertions.assertFalse(toTest.text.isShowing());
+        Assertions.assertEquals(toTest.text.getText(), "File can't be found. Please make sure the file is in this programs folder.");
+    }
 
     @Test
-    public void TestOpensTodoOnDefault1() {
-
-        toTest.enterFilename.setText("");
+    public void TestOpensTodoPerformActionOnValidFile() {
+        toTest.enterFilename.setText("default");
         toTest.openDefault.doClick();
 
-        try (MockedStatic<CLIMenu> utilities = Mockito.mockStatic(CLIMenu.class)) {
-            utilities.when(() -> {
-              CLIMenu.importList("default.txt");
-            }).thenReturn(true);
-        }
-
-        Assertions.assertFalse(CLIMenu.importList("default.txt"));
+        ActionEvent e = new ActionEvent(this, 100, "Open File");
+        toTest.actionPerformed(e);
         Assertions.assertFalse(toTest.text.isShowing());
     }
 
