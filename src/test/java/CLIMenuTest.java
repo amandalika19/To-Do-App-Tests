@@ -40,20 +40,17 @@ public class CLIMenuTest
         Assertions.assertEquals(0, CLIMenu.todos.size());
     }
 
-/*
+
     @Test
     void importList(){
-
-
-
-        Assertions.assertEquals(1, CLIMenu.todos.size());
+        String filename = "newToDoListFile";
+        newCli.importList(filename);
+        Assertions.assertEquals(3, CLIMenu.todos.size());
     }
 
     @Test
-    void updateFile(){
-        Todo nonUpdatedTodo = existingTodo;
-        newCli.updateTodo(existingTodo, "Updated First Todo", time, Category.Red, Importance.Normal, Status.Partial);
-        Assertions.assertTrue(existingTodo != nonUpdatedTodo);
-    } */
-
+    void updateFile() {
+        newCli.updateFile();
+        Assertions.assertEquals(0, CLIMenu.todos.size());
+    }
 }
