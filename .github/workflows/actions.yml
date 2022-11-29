@@ -23,11 +23,6 @@ jobs:
         with:
           run: mvn -B test --file pom.xml
 
-      - name: Generate JaCoCo Badge
-        uses: cicirello/jacoco-badge-generator@v2
-        with:
-          generate-branches-badge: true
-          
       - name: Report
         id: testreports
         uses: phoenix-actions/test-reporting@v10
@@ -51,8 +46,7 @@ jobs:
           username: shanmupriyar57@gmail.com
           password: ${{secrets.PASSWORD}}
           subject: ${{ github.job }} job of ${{ github.repository }} Result
-          to: shanmupriya96@outlook.com
-          cc: shanmupriya96@outlook.com
+          to: shanmupriya96@outlook.com, sbarki@seattleu.edu, mandalikaann@seattleu.edu, yzhong2@seattleu.edu
           from: Shanmugapriya Ravi
           body: 
             ${{ github.job.build }} The Build in worflow ${{ github.workflow }} of ${{ github.repository }} Results 
