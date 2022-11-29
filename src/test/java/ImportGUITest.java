@@ -1,12 +1,9 @@
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
-
+import org.mockito.MockedStatic;
+import org.mockito.Mockito;
 
 import java.awt.event.ActionEvent;
-
-import static org.mockito.Mockito.when;
-import static org.powermock.api.mockito.PowerMockito.spy;
-import static org.powermock.api.mockito.PowerMockito.verifyStatic;
 
 public class ImportGUITest {
     ImportGUI toTest;
@@ -33,11 +30,27 @@ public class ImportGUITest {
         Assertions.assertEquals(toTest.text.getText(), "File can't be found. Please make sure the file is in this programs folder.");
     }
 
+//    @Test
+//    public void TestOpensTodoOnDefault() {
+//        toTest.enterFilename.setText("");
+//        toTest.openDefault.doClick();
+//
+//        Assertions.assertFalse(toTest.text.isShowing());
+//    }
+
     @Test
-    public void TestOpensTodoOnDefault() {
+    public void TestOpensTodoOnDefault1() {
+
         toTest.enterFilename.setText("");
         toTest.openDefault.doClick();
 
+        try (MockedStatic<CLIMenu> utilities = Mockito.mockStatic(CLIMenu.class)) {
+            utilities.when(() -> {
+              CLIMenu.importList("default.txt");
+            }).thenReturn(true);
+        }
+
+        Assertions.assertTrue(CLIMenu.importList("default.txt"));
         Assertions.assertFalse(toTest.text.isShowing());
     }
 

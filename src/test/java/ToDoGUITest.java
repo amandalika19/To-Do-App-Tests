@@ -1,15 +1,10 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.time.LocalDateTime;
-import java.util.UUID;
 
-import static org.junit.Assert.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
@@ -23,12 +18,12 @@ public class ToDoGUITest
     }
     @Test
     public void ToDoGUITest_TestFrameSettings_ReturnExpectedValues() {
-        assertEquals(700, toTest.getSize().getWidth());
-        assertEquals(300, toTest.getSize().getHeight());
-        assertEquals("To Do List Application", toTest.getTitle());
-        assertEquals(3, toTest.getDefaultCloseOperation());
-        assertEquals(300, toTest.getLocation().x);
-        assertEquals(300, toTest.getLocation().y);
+        Assertions.assertEquals(700, toTest.getSize().getWidth());
+        Assertions.assertEquals(300, toTest.getSize().getHeight());
+        Assertions.assertEquals("To Do List Application", toTest.getTitle());
+        Assertions.assertEquals(3, toTest.getDefaultCloseOperation());
+        Assertions.assertEquals(300, toTest.getLocation().x);
+        Assertions.assertEquals(300, toTest.getLocation().y);
     }
 
     @Test
@@ -46,7 +41,7 @@ public class ToDoGUITest
         String commandName = "Add To-do";
         ActionEvent event = new ActionEvent(this, 120, commandName);
         toTest.actionPerformed(event);
-        assertEquals(false, toTest.isVisible());
+        Assertions.assertEquals(false, toTest.isVisible());
     }
 
     @Test
@@ -55,7 +50,7 @@ public class ToDoGUITest
         String commandName = "Update To-do";
         ActionEvent event = new ActionEvent(this, 120, commandName);
         toTest.actionPerformed(event);
-        assertEquals("Please select a todo to update.", toTest.text.getText());
+        Assertions.assertEquals("Please select a todo to update.", toTest.text.getText());
     }
 
     @Test
@@ -64,7 +59,7 @@ public class ToDoGUITest
         String commandName = "Delete To-do";
         ActionEvent event = new ActionEvent(this, 120, commandName);
         toTest.actionPerformed(event);
-        assertEquals("Please select a todo to delete.", toTest.text.getText());
+        Assertions.assertEquals("Please select a todo to delete.", toTest.text.getText());
     }
 
     @Test
@@ -73,7 +68,7 @@ public class ToDoGUITest
         String commandName = "Open Another List";
         ActionEvent event = new ActionEvent(this, 120, commandName);
         toTest.actionPerformed(event);
-        assertEquals(false, toTest.isVisible());
+        Assertions.assertEquals(false, toTest.isVisible());
     }
 
     @Test
@@ -84,7 +79,7 @@ public class ToDoGUITest
         String commandName = "Update To-do";
         ActionEvent event = new ActionEvent(this, 120, commandName);
         toTest.actionPerformed(event);
-        assertEquals(false, toTest.isVisible());
+        Assertions.assertEquals(false, toTest.isVisible());
     }
 
     @Test
@@ -95,7 +90,7 @@ public class ToDoGUITest
         String commandName = "Delete To-do";
         ActionEvent event = new ActionEvent(this, 120, commandName);
         toTest.actionPerformed(event);
-        assertEquals(false, toTest.isVisible());
+        Assertions.assertEquals(false, toTest.isVisible());
     }
 
     @Test
@@ -105,7 +100,7 @@ public class ToDoGUITest
         Todo test = new Todo("Test", time, Category.Blue, Importance.High, Status.Started);
         ListSelectionEvent e = new ListSelectionEvent(test, 0, 0, true);
         Exception exception = assertThrows(NullPointerException.class, ()-> {toTest.valueChanged(e);});
-        assertTrue(exception.getMessage().contains("Cannot invoke"));
+        Assertions.assertTrue(exception.getMessage().contains("Cannot invoke"));
     }
 
 
