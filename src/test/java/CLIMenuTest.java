@@ -47,6 +47,12 @@ public class CLIMenuTest
         newCli.importList(filename);
         Assertions.assertEquals(3, CLIMenu.todos.size());
     }
+    
+    @Test
+    void importList_Exception(){
+        String filename = "fail";
+        assertFalse(newCli.importList(filename));
+    }
 
     @Test
     void updateFile() {
