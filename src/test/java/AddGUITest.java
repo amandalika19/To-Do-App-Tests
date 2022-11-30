@@ -261,4 +261,34 @@ public class AddGUITest {
         ActionEvent event = new ActionEvent(this, 120, commandName);
         addGUI.actionPerformed(event);
     }
+    
+    @Test
+    public void actionPerformed_WhenTODOActionEventLowerBoundaryDate_ThenPerformAction() {
+        AddGUI addGUI = new AddGUI();
+        addGUI.enterName.setText(UUID.randomUUID().toString());
+        addGUI.enterDate.setText(LocalDateTime.now().minusDays(10000).toString());
+        addGUI.yellow.setSelected(true);
+        addGUI.high.setSelected(true);
+        addGUI.completed.setSelected(true);
+        CLIMenu cliMenu = new CLIMenu();
+
+        String commandName = "Add Todo";
+        ActionEvent event = new ActionEvent(this, 120, commandName);
+        addGUI.actionPerformed(event);
+    }
+
+    @Test
+    public void actionPerformed_WhenTODOActionEventHigherBoundaryDate_ThenPerformAction() {
+        AddGUI addGUI = new AddGUI();
+        addGUI.enterName.setText(UUID.randomUUID().toString());
+        addGUI.enterDate.setText(LocalDateTime.now().plusDays(10000).toString());
+        addGUI.yellow.setSelected(true);
+        addGUI.high.setSelected(true);
+        addGUI.completed.setSelected(true);
+        CLIMenu cliMenu = new CLIMenu();
+
+        String commandName = "Add Todo";
+        ActionEvent event = new ActionEvent(this, 120, commandName);
+        addGUI.actionPerformed(event);
+    }
 }
